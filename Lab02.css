@@ -25,7 +25,7 @@ Instructions: The HTML file is complete and images have been provided. The CSS f
 
 PART 1: Using the ELEMENT Selector:
 * Step 1: (DONE) Target the html BODY element and give it a top and bottom margin of 1rem and a left and right margin of 5rem.
-* Step 2: (REVISIT) Target the page title and give it a filter of drop-shadow with x offset of 2 pixels, y offset of 2 pixels, blur of 1 pixel and hex color code of #0f6a9e.(See documentation https://developer.mozilla.org/en-US/docs/Web/CSS/filter)
+* Step 2: (DONE) Target the page title and give it a filter of drop-shadow with x offset of 2 pixels, y offset of 2 pixels, blur of 1 pixel and hex color code of #0f6a9e.(See documentation https://developer.mozilla.org/en-US/docs/Web/CSS/filter)
 * Step 3: (DONE) Target all of the paragraphs and lists on the page to give it a font size of 20 pixels.
 * Step 4: Target all of the image elements, assign the following:
         * (DONE) margin (top, right, bottom, and left) of 1 rem
@@ -38,11 +38,11 @@ PART 1: Using the ELEMENT Selector:
 
 PART 2: Using ID or CLASS Selectors: 
 * Step 1: (DONE) Notice that there are 2 images at the top, one shorter than the other. In the HTML file, find the ID for the shorter image and give it a property of {display: none;} in the CSS file.
-* Step 2: (REVISIT) Now that the shorter image is hidden, when the screen is 500 pixels or less, the shorter image needs to display once again and the longer image needs to be hidden. Go to the last MEDIA QUERY in the CSS file and add the necessary properties to make this happen. If using Chrome, use the Chrome Dev tools to check the web page's responsiveness.
-* Step 3: (REVISIT) The caption for the top banner image is not under the image like it should be. Add a property to make the caption wrap under the image using flex.
+* Step 2: (DONE) Now that the shorter image is hidden, when the screen is 500 pixels or less, the shorter image needs to display once again and the longer image needs to be hidden. Go to the last MEDIA QUERY in the CSS file and add the necessary properties to make this happen. If using Chrome, use the Chrome Dev tools to check the web page's responsiveness.
+* Step 3: (DONE) The caption for the top banner image is not under the image like it should be. Add a property to make the caption wrap under the image using flex.
 * Step 4: (DONE) In the DIV that has the 4 images, justify the content by putting space around each image.
 * Step 5: (DONE) Give the DIV that houses the "Top 5 Places to Visit..." a background color of rgb(0, 58, 66) and a border radius of 1 rem.
-* Step 6: (REVISIT) The DIV that houses the "Tips and Reccs" appears to be squished when the screen size is less than 1100 pixels. Add to the appropriate MEDIA QUERY a property that will allow the div to wrap down and then justify the contents to the center. Start by taking a look at the CSS for that DIV outside of the MEDIA QUERY to understand how the DIV is behaving.
+* Step 6: (DONE) The DIV that houses the "Tips and Reccs" appears to be squished when the screen size is less than 1100 pixels. Add to the appropriate MEDIA QUERY a property that will allow the div to wrap down and then justify the contents to the center. Start by taking a look at the CSS for that DIV outside of the MEDIA QUERY to understand how the DIV is behaving.
 
 -----------------------------------------------------
 
@@ -58,9 +58,7 @@ of the elements on the page can help fix issues with spacing too, especially if 
 /* ---UNIVERSAL SELECTOR--- */
 /* OPTIONAL ↓ REMOVE COMMENTS TO SEE RED BORDER:*/
 
-* {
-  border: 1px solid red;
-}
+
 
 /* ---ELEMENT SELECTORS--- */
 
@@ -79,7 +77,7 @@ body {
 is the hex color supposed to be for the box or the text? */
 h1 {
   text-align: center;
-  filter: box-shadow(2px 2px 1px #0f6a9e);
+  filter: drop-shadow(2px 2px 1px #0f6a9e);
   color: #0f6a9e;
 }
 h2 {
@@ -111,9 +109,10 @@ img {
 /* go back to step 3 under Part 2  instructions to figure out how
 to wrap caption*/
 figcaption {
-  text-align: center;
+    text-align: center;
   font-weight: bold;
   color: rgb(0, 58, 66);
+  
 }
 footer {
   margin: 2rem 0 2rem 0;
@@ -124,9 +123,11 @@ footer {
 
 .banner-div {
   display: flex;
+  flex-wrap: wrap; /*in order to target the figcaption, i had to go to the container that it was in!!*/
   justify-content: center;
 }
 #banner-long {
+  display: flex;
   max-width: 100%;
   height: auto;
 }
@@ -163,6 +164,8 @@ footer {
 
 /* revist this in step 2 under Part 2, figure out how to rescale
 images to show on specified pages*/
+/* @media query means, a parameter for when the screen
+is x big or x small, do this instead*/
 
 @media only screen and (max-width: 1500px) {
   .img-div img {
@@ -172,6 +175,8 @@ images to show on specified pages*/
 
 @media only screen and (max-width: 1100px) {
   .tips-div {
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }
 
@@ -189,9 +194,13 @@ images to show on specified pages*/
   .tips-div img {
     width: 230px;
   }
+
+  /*utilized video to help with the pictures below part*/
   #banner-long {
+    display: none;
   }
   #banner-short {
+    display: block;
   }
 }
 /* ------------------------- */
